@@ -89,13 +89,6 @@ def choose_closet_possible(pw):
             if closest_source:
                 return closest_source, planet, net_threat + 1  # +1 for safety
 
-    under_attack_ids = set(
-        fleet.destination_planet()
-        for fleet in enemyFleets
-    )
-
-    myPlanets = [planet for planet in myPlanets if planet.planet_id() not in under_attack_ids]
-
     # offense
     targets = []
     for neut in pw.neutral_planets():
