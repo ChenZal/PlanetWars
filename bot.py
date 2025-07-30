@@ -159,7 +159,7 @@ def issue_order(pw, source_planet, destination_planet, num_ships):
     distance = pw.distance(source_planet_id, destination_planet_id)
 
     # Create and track the fleet
-    new_fleet = Fleet(1, num_ships, source_planet_id, destination_planet_id, distance, distance)
+    new_fleet = Fleet(1, num_ships, source_planet_id, destination_planet_id, distance, distance / 1000)
     pw._fleets.append(new_fleet)
 
     # Store the command for output later
