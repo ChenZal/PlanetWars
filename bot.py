@@ -35,7 +35,6 @@ NEUTRAL = 3
 ENEMY = 2
 MINE = 1
 
-
 def choose_closet_possible(pw):
     myPlanets = pw.my_planets()
     myFleets = pw.my_fleets()
@@ -128,7 +127,8 @@ def choose_closet_possible(pw):
             # and the more the rate is the better
             if rate == 0:
                 continue
-            value = (dist + needed) / rate
+
+            value = (0.5 * dist + needed) / rate
 
             if (value < bestValue) and needed < myP.num_ships():
                 bestValue = value
@@ -159,7 +159,7 @@ def issue_order(pw, source_planet, destination_planet, num_ships):
     distance = pw.distance(source_planet_id, destination_planet_id)
 
     # Create and track the fleet
-    new_fleet = Fleet(1, num_ships, source_planet_id, destination_planet_id, distance, distance / 1000)
+    new_fleet = Fleet(1, num_ships, source_planet_id, destination_planet_id, distance, distance)
     pw._fleets.append(new_fleet)
 
     # Store the command for output later
