@@ -105,8 +105,6 @@ def choose_closet_possible(pw):
             dist = pw.distance(myP, targ)
             needed = targ.num_ships() + 1
             rate = targ.growth_rate()
-            if rate == 0:
-                continue
 
             if typeP == ENEMY:
                 needed += rate * dist
@@ -124,7 +122,10 @@ def choose_closet_possible(pw):
 
             # the more distance the worst, the more needed the worst,
             # and the more the rate is the better
-            value = (0.5 * dist + needed) / rate
+            if rate != 0:
+                value = (0.5 * dist + needed) / rate
+            else:
+                value = 1000 * 1000 * 1000
 
             if (value < bestValue) and needed < myP.num_ships():
                 bestValue = value
