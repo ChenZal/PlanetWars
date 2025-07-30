@@ -1,8 +1,5 @@
-from random import randint
-
-
 class Fleet:
-    def __init__(self, owner, num_ships, source_planet, destination_planet, \
+    def __init__(self, owner, num_ships, source_planet, destination_planet,
                  total_trip_length, turns_remaining):
         self._owner = owner
         self._num_ships = num_ships
@@ -34,6 +31,7 @@ class Fleet:
 NEUTRAL = 3
 ENEMY = 2
 MINE = 1
+
 
 def choose_closet_possible(pw):
     myPlanets = pw.my_planets()
@@ -161,7 +159,7 @@ def issue_order(pw, source_planet, destination_planet, num_ships):
     pw._fleets.append(new_fleet)
 
     # Store the command for output later
-    return (source_planet_id, destination_planet_id, num_ships)
+    return source_planet_id, destination_planet_id, num_ships
 
 
 def do_turn(pw):
@@ -185,6 +183,3 @@ def do_turn(pw):
 
     for order in orders:
         pw.issue_order(order[0], order[1], order[2])
-
-    #pw.debug('Num Ships: ' + str(num_ships))
-    #pw.debug(str(myBest.planet_id()) + " " + str(targetBest.planet_id()))
