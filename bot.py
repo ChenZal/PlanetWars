@@ -44,7 +44,6 @@ def choose_closet_possible(pw):
         return None, None, 0
 
     # defense
-    # defense
     for planet in myPlanets:
         # Get the earliest enemy arrival time
         enemy_fleets_to_planet = [
@@ -108,6 +107,8 @@ def choose_closet_possible(pw):
             dist = pw.distance(myP, targ)
             needed = targ.num_ships() + 1
             rate = targ.growth_rate()
+            if rate == 0:
+                continue
 
             if typeP == ENEMY:
                 needed += rate * dist
@@ -125,9 +126,6 @@ def choose_closet_possible(pw):
 
             # the more distance the worst, the more needed the worst,
             # and the more the rate is the better
-            if rate == 0:
-                continue
-
             value = (0.5 * dist + needed) / rate
 
             if (value < bestValue) and needed < myP.num_ships():
