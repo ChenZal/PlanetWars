@@ -18,11 +18,15 @@ def choose_closet_possible(pw):
             dist = pw.distance(myP, n)
             needed = n.num_ships()
             if not isNeut:
-                pass
+                needed = n.num_ships + (n.growth_rate() * dist)
+
             if (dist < bestDist) and needed < myP.num_ships():
                 bestDist = dist
                 bestMy = myP
                 bestN = n
                 num_ships = needed
+
+    if num_ships == 0:
+        num_ships = 1
 
     return (bestMy, bestN, num_ships)
